@@ -4,7 +4,7 @@ import FileUploader from "~/components/FileUploader";
 import {usePuterStore} from "~/lib/puter";
 import {useNavigate} from "react-router";
 import {convertPdfToImage} from "~/lib/pdf2img";
-import {generateUUID} from "~/components/utils";
+import {generateUUID} from "~/lib/utils";
 import {prepareInstructions} from "../../constants";
 
 const Upload = () => {
@@ -64,8 +64,9 @@ const handleAnalyze = async({companyName,jobTitle,jobDescription,file}:{companyN
 
     data.feedback = JSON.parse(feedbackText);
     await kv.set(`resume:${uuid}`,JSON.stringify(data));
-
     setStatusText('Analysis complete, redirecting...');
+    console.log(data);
+    navigate(`/resume/${uuid}`);
 
 }
 const handleSubmit=(e:FormEvent<HTMLFormElement>)=>{
