@@ -46,7 +46,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
             <div className="mb-6">
                 <h3 className="text-xl font-semibold mb-2">{subtitle}</h3>
                 <p className="text-gray-600 mb-4">
-                    This score represents how well your resume is likely to perform in Applicant Tracking Systems used by employers.
+                    This score represents how well your resume is likely to perform in Applicant Tracking Systems used by employers
                 </p>
 
                 {/* Suggestions list */}
@@ -68,7 +68,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
 
             {/* Closing encouragement */}
             <p className="text-gray-700 italic">
-                Keep refining your resume to improve your chances of getting past ATS filters and into the hands of recruiters.
+                Keep refining your resume to improve your chances of getting past ATS filters and into the hands of recruiters
             </p>
         </div>
     )
