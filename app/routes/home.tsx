@@ -30,9 +30,7 @@ export default function Home() {
       setLoadingResumes(true);
 
       const items = (await kv.list("resume:*", true)) as KVItem[];
-      const parsed = items?.map((item) =>
-          JSON.parse(item.value)
-      ) as Resume[];
+      const parsed = items?.map((item) => JSON.parse(item.value)) as Resume[];
 
       setResumes(parsed || []);
       setLoadingResumes(false);
@@ -45,60 +43,53 @@ export default function Home() {
     await kv.delete(`resume:${id}`);
     setResumes((prev) => prev.filter((r) => r.id !== id));
   };
+
   return (
       <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
         <Navbar />
 
-        <section className="relative">
-          <div className="py-16 text-center px-4">
-            <h1 className="text-3xl font-bold">
-              Track Your Applications & Resume Ratings
-            </h1>
+        <section className="relative py-16 px-4 flex flex-col items-center min-h-[60vh]">
+          <h1 className="text-3xl font-bold text-center mb-4">
+            Track Your Applications & Resume Ratings
+          </h1>
 
-            {!loadingResumes && resumes.length === 0 ? (
-                <h2 className="mt-3 text-gray-500">
-                  No resumes found. Upload your first resume to get feedback.
-                </h2>
-            ) : (
-                <h2 className="mt-3 text-gray-500">
-                  Review your submissions and check AI-powered feedback.
-                </h2>
-            )}
-          </div>
-
-          {loadingResumes && (
-              <div className="flex justify-center">
+          {loadingResumes ? (
+              <div className="flex justify-center mt-10">
                 <img
                     src="/images/resume-scan-2.gif"
                     className="w-[200px]"
                     alt="Loading"
                 />
               </div>
-          )}
-
-          {!loadingResumes && resumes.length > 0 && (
-              <section className="px-8 pb-24">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                  {resumes.map((resume) => (
-                      <ResumeCard
-                          key={resume.id}
-                          resume={resume}
-                          onDelete={handleDelete}
-                      />
-                  ))}
-                </div>
-              </section>
-          )}
-
-          {!loadingResumes && resumes.length === 0 && (
-              <div className="flex justify-center mt-10">
+          ) : resumes.length === 0 ? (
+              <div className="flex flex-col items-center mt-6 gap-6">
+                <h2 className="text-gray-500 text-center">
+                  No resumes found. Upload your first resume to get feedback.
+                </h2>
                 <Link
                     to="/upload"
-                    className="primary-button text-xl font-semibold"
+                    className="primary-button text-xl font-semibold px-8 w-auto"
                 >
                   Upload Resume
                 </Link>
               </div>
+          ) : (
+              <>
+                <h2 className="text-gray-500 text-center mt-3 mb-10">
+                  Review your submissions and check AI-powered feedback.
+                </h2>
+                <div className="px-4 w-full max-w-7xl mx-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+                    {resumes.map((resume) => (
+                        <ResumeCard
+                            key={resume.id}
+                            resume={resume}
+                            onDelete={handleDelete}
+                        />
+                    ))}
+                  </div>
+                </div>
+              </>
           )}
         </section>
       </main>
