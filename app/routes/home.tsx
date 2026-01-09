@@ -45,7 +45,7 @@ export default function Home() {
   };
 
   return (
-      <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
+      <main className="bg-[url('/images/bg-new-main.png')] bg-cover min-h-screen">
         <Navbar />
 
         <section className="relative py-16 px-4 flex flex-col items-center min-h-[60vh]">
