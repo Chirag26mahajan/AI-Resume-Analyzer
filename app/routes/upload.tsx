@@ -119,7 +119,7 @@ const handleSubmit=(e:FormEvent<HTMLFormElement>)=>{
 }
 
     return (
-        <main className="bg-[url('/images/bg-new-main.png')] bg-cover">
+        <main className="bg-[url('/images/bgmain.png')] bg-cover">
             <Navbar/>
             <section className="main-section">
                 <div className="page-heading py-16">
