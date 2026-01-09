@@ -57,7 +57,7 @@ export default function Home() {
               <div className="flex justify-center mt-10">
                 <img
                     src="/images/resume-scan-2.gif"
-                    className="w-[200px]"
+                    className="w-50"
                     alt="Loading"
                 />
               </div>
